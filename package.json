@@ -1,21 +1,22 @@
 {
-  "name": "p-limit",
-  "version": "4.0.0",
+  "name": "@freik/p-limit",
+  "version": "5.0.0",
   "description": "Run multiple promise-returning & async functions with limited concurrency",
   "license": "MIT",
-  "repository": "sindresorhus/p-limit",
+  "repository": "kevinfrei/p-limit",
   "funding": "https://github.com/sponsors/sindresorhus",
-  "author": {
-    "name": "Sindre Sorhus",
-    "email": "sindresorhus@gmail.com",
-    "url": "https://sindresorhus.com"
+  "bugs": {
+    "url": "https://github.com/kevinfrei/p-limit/issues"
   },
-  "type": "module",
-  "exports": "./index.js",
+  "author": "Kevin Frei (kevinfrei@hotmail.com)",
+  "module": "./lib/esm/index.js",
+  "main": "./lib/cjs/index.js",
+  "types": "./lib/esm/index.d.ts",
   "engines": {
     "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
   },
   "scripts": {
+    "funding": "echo Go to Sindresorhus to donate money",
     "test": "jest --config jestconfig.json",
     "watch": "jest --watch --config jestconfig.json",
     "clean": "rimraf lib && rimraf \".*.tsbuildinfo\"",
@@ -43,7 +44,6 @@
     "limited",
     "concurrency",
     "throttle",
-    "throat",
     "rate",
     "batch",
     "ratelimit",
@@ -51,12 +51,8 @@
     "queue",
     "async",
     "await",
-    "promises",
-    "bluebird"
+    "promises"
   ],
-  "dependencies": {
-    "@freik/simple-queue": "^0.1.0"
-  },
   "devDependencies": {
     "@types/jest": "^28.1.1",
     "@typescript-eslint/eslint-plugin": "^5.28.0",

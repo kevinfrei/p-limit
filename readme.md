@@ -2,16 +2,20 @@
 
 > Run multiple promise-returning & async functions with limited concurrency
 
+> Do it for both CommonJS (electron, older Node) and ES Modules systems!
+
 ## Install
 
 ```
-$ npm install p-limit
+$ npm install @freik/p-limit
 ```
 
 ## Usage
 
+Note: pLimit is now a named export, not a default export. (Default exports are annoying to deal with for dual-mode modules...)
+
 ```js
-import pLimit from 'p-limit';
+import { pLimit } from 'p-limit';
 
 const limit = pLimit(1);
 
@@ -74,26 +78,10 @@ Note: This does not cancel promises that are already running.
 
 ## FAQ
 
-### How is this different from the [`p-queue`](https://github.com/sindresorhus/p-queue) package?
+### How is this different from the [`p-limit`](https://github.com/sindresorhus/p-limit) package?
 
-This package is only about limiting the number of concurrent executions, while `p-queue` is a fully featured queue implementation with lots of different options, introspection, and ability to pause the queue.
+This package is deployed as both a CommonJS and an ES Module. I work in Electron, so I need it both ways. I also live in Typescript, so I added types to the original code, and got rid of the separate type definition file.
 
-## Related
+If you like this, go to the original project author. They did most of the work.
 
-- [p-queue](https://github.com/sindresorhus/p-queue) - Promise queue with concurrency control
-- [p-throttle](https://github.com/sindresorhus/p-throttle) - Throttle promise-returning & async functions
-- [p-debounce](https://github.com/sindresorhus/p-debounce) - Debounce promise-returning & async functions
-- [p-all](https://github.com/sindresorhus/p-all) - Run promise-returning & async functions concurrently with optional limited concurrency
-- [More…](https://github.com/sindresorhus/promise-fun)
-
----
-
-<div align="center">
-	<b>
-		<a href="https://tidelift.com/subscription/pkg/npm-p-limit?utm_source=npm-p-limit&utm_medium=referral&utm_campaign=readme">Get professional support for this package with a Tidelift subscription</a>
-	</b>
-	<br>
-	<sub>
-		Tidelift helps make open source sustainable for maintainers while giving companies<br>assurances about security, maintenance, and licensing for their dependencies.
-	</sub>
-</div>
+I might fork their other suff, if I ever wind up needing any of it from the Electron main process...

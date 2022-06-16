@@ -1,4 +1,4 @@
-import { MakeSimpleQueue } from '@freik/simple-queue';
+import { MakeSimpleQueue } from './queue.js';
 
 type PromiseFunc<ArgTypes extends unknown[], ReturnType> = (
   ...args: ArgTypes
