@@ -1,54 +1,74 @@
 {
-	"name": "p-limit",
-	"version": "4.0.0",
-	"description": "Run multiple promise-returning & async functions with limited concurrency",
-	"license": "MIT",
-	"repository": "sindresorhus/p-limit",
-	"funding": "https://github.com/sponsors/sindresorhus",
-	"author": {
-		"name": "Sindre Sorhus",
-		"email": "sindresorhus@gmail.com",
-		"url": "https://sindresorhus.com"
-	},
-	"type": "module",
-	"exports": "./index.js",
-	"engines": {
-		"node": "^12.20.0 || ^14.13.1 || >=16.0.0"
-	},
-	"scripts": {
-		"test": "xo && ava && tsd"
-	},
-	"files": [
-		"index.js",
-		"index.d.ts"
-	],
-	"keywords": [
-		"promise",
-		"limit",
-		"limited",
-		"concurrency",
-		"throttle",
-		"throat",
-		"rate",
-		"batch",
-		"ratelimit",
-		"task",
-		"queue",
-		"async",
-		"await",
-		"promises",
-		"bluebird"
-	],
-	"dependencies": {
-		"yocto-queue": "^1.0.0"
-	},
-	"devDependencies": {
-		"ava": "^3.15.0",
-		"delay": "^5.0.0",
-		"in-range": "^3.0.0",
-		"random-int": "^3.0.0",
-		"time-span": "^5.0.0",
-		"tsd": "^0.17.0",
-		"xo": "^0.44.0"
-	}
+  "name": "p-limit",
+  "version": "4.0.0",
+  "description": "Run multiple promise-returning & async functions with limited concurrency",
+  "license": "MIT",
+  "repository": "sindresorhus/p-limit",
+  "funding": "https://github.com/sponsors/sindresorhus",
+  "author": {
+    "name": "Sindre Sorhus",
+    "email": "sindresorhus@gmail.com",
+    "url": "https://sindresorhus.com"
+  },
+  "type": "module",
+  "exports": "./index.js",
+  "engines": {
+    "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+  },
+  "scripts": {
+    "test": "jest --config jestconfig.json",
+    "watch": "jest --watch --config jestconfig.json",
+    "clean": "rimraf lib && rimraf \".*.tsbuildinfo\"",
+    "build": "tsc --project tsconfig.cjs.json && tsc --project tsconfig.esm.json",
+    "cleanbuild": "yarn clean && yarn build",
+    "dbg": "yarn clean && tsc --sourceMap true --project tsconfig.cjs.json && tsc --sourceMap true --project tsconfig.esm.json",
+    "postinstall": "husky install",
+    "prepublishOnly": "yarn test && yarn lint && pinst --disable",
+    "postpublish": "pinst --enable",
+    "prepare": "yarn cleanbuild",
+    "format": "prettier --write \"src/**/*.ts\" \"*.md\" \"*.json\"",
+    "lint": "eslint --fix --ext .ts src",
+    "preversion": "yarn lint",
+    "version": "yarn format && git add -A src",
+    "postversion": "git push && git push --tags --no-verify",
+    "compile": "tsc --noEmit --project tsconfig.cjs.json && tsc --noEmit --project tsconfig.esm.json",
+    "chk": "yarn format && yarn lint && yarn compile && yarn test"
+  },
+  "files": [
+    "lib/*/*"
+  ],
+  "keywords": [
+    "promise",
+    "limit",
+    "limited",
+    "concurrency",
+    "throttle",
+    "throat",
+    "rate",
+    "batch",
+    "ratelimit",
+    "task",
+    "queue",
+    "async",
+    "await",
+    "promises",
+    "bluebird"
+  ],
+  "dependencies": {
+    "@freik/simple-queue": "^0.1.0"
+  },
+  "devDependencies": {
+    "@types/jest": "^28.1.1",
+    "@typescript-eslint/eslint-plugin": "^5.28.0",
+    "@typescript-eslint/parser": "^5.28.0",
+    "eslint": "^8.17.0",
+    "eslint-config-prettier": "^8.5.0",
+    "husky": "^8.0.1",
+    "jest": "^28.1.1",
+    "pinst": "^3.0.0",
+    "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
+    "ts-jest": "^28.0.5",
+    "typescript": "^4.7.3"
+  }
 }

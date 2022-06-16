@@ -16,9 +16,9 @@ import pLimit from 'p-limit';
 const limit = pLimit(1);
 
 const input = [
-	limit(() => fetchSomething('foo')),
-	limit(() => fetchSomething('bar')),
-	limit(() => doSomething())
+  limit(() => fetchSomething('foo')),
+  limit(() => fetchSomething('bar')),
+  limit(() => doSomething()),
 ];
 
 // Only one promise is run at once
@@ -54,7 +54,7 @@ Promise-returning/async function.
 
 Any arguments to pass through to `fn`.
 
-Support for passing arguments on to the `fn` is provided in order to be able to avoid creating unnecessary closures. You probably don't need this optimization unless you're pushing a *lot* of functions.
+Support for passing arguments on to the `fn` is provided in order to be able to avoid creating unnecessary closures. You probably don't need this optimization unless you're pushing a _lot_ of functions.
 
 ### limit.activeCount
 
